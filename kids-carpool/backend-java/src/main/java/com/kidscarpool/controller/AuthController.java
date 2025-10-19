@@ -46,7 +46,7 @@ public class AuthController {
     public ResponseEntity<?> getCurrentUser() {
         try {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            String email = authentication.getName();
+            String email = (String) authentication.getPrincipal();
             UserResponse user = authService.getCurrentUser(email);
             return ResponseEntity.ok(user);
         } catch (Exception e) {
